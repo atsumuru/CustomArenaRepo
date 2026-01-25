@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1568134835590850753}
   - component: {fileID: 5826059330530633345}
   - component: {fileID: -338053755581068439}
+  - component: {fileID: 4304491604102681648}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -124,3 +125,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 100
+--- !u!114 &4304491604102681648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919716814502928537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14846ccd6df11324f85cee6e4928923c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
