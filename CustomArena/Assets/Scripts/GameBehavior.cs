@@ -7,7 +7,7 @@ public class GameBehavior : MonoBehaviour
 {
     private int _itemsCollected = 0;
     private int _playerHP = 10;
-    public int MaxItems = 4;
+    public int MaxItems = 3;
     public TMP_Text HealthText;
     public TMP_Text ItemText;
     public TMP_Text ProgressText;

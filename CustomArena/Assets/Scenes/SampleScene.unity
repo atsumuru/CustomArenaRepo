@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c7483737471954caa1fd551d866ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameBehavior
-  MaxItems: 1
+  MaxItems: 3
   HealthText: {fileID: 1148139542}
   ItemText: {fileID: 297501657}
   ProgressText: {fileID: 1442308554}
@@ -4219,7 +4219,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collect all the tems to win!
+  m_text: 'Collect all the items to win!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4253,7 +4255,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4285,7 +4287,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -66.53668, w: 0}
+  m_margin: {x: 0, y: 0, z: -147.32544, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4315,7 +4317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: -47, y: 15}
   m_SizeDelta: {x: 435, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1482079589
@@ -4380,6 +4382,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1594806766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594806753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14846ccd6df11324f85cee6e4928923c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemBehavior
+  GameManager: {fileID: 0}
+--- !u!1 &1665667201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4028322093873916865, guid: 5935591e1f41d0a48810e60aa0738d66, type: 3}
+  m_PrefabInstance: {fileID: 1064976169025604135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1665667209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665667201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14846ccd6df11324f85cee6e4928923c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemBehavior
+  GameManager: {fileID: 0}
 --- !u!1 &1671732352
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,13 +5999,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4304491604102681648, guid: 91adc02a03aa6e94f84134920664fc59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5919716814502928537, guid: 91adc02a03aa6e94f84134920664fc59, type: 3}
-      insertIndex: 5
+      insertIndex: -1
       addedObject: {fileID: 1594806759}
+    - targetCorrespondingSourceObject: {fileID: 5919716814502928537, guid: 91adc02a03aa6e94f84134920664fc59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1594806766}
   m_SourcePrefab: {fileID: 100100000, guid: 91adc02a03aa6e94f84134920664fc59, type: 3}
 --- !u!1001 &1064976169025604135
 PrefabInstance:
@@ -6026,10 +6063,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1197916041807805184, guid: 5935591e1f41d0a48810e60aa0738d66, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4028322093873916865, guid: 5935591e1f41d0a48810e60aa0738d66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1665667209}
   m_SourcePrefab: {fileID: 100100000, guid: 5935591e1f41d0a48810e60aa0738d66, type: 3}
 --- !u!1001 &4878734888763076738
 PrefabInstance:
