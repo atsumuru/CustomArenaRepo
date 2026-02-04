@@ -9,7 +9,7 @@ public class GameBehavior : MonoBehaviour
     public int _playerHP = 10; // Player Health
     public int MaxItems = 3; // Maximum Items to Win
 
-    public double _playerSpeed = 1.0;// Player Speed
+    public float _playerSpeed = 5f;// Player Speed
 
     public TMP_Text HealthText; // Health Display
     public TMP_Text ItemText; // Items Display
@@ -33,6 +33,8 @@ public class GameBehavior : MonoBehaviour
         {
             _itemsCollected = value;
             ItemText.text = "Items: " + Items;
+
+// edits the progress text and checks for win condition
 
             if (_itemsCollected >= MaxItems) // Reaches max items
             {
@@ -58,7 +60,7 @@ public class GameBehavior : MonoBehaviour
         }
     }
     
-    public double Speed // Property for Player Speed
+    public float Speed // Property for Player Speed
     {
         get { return _playerSpeed; } // Get player speed
         set

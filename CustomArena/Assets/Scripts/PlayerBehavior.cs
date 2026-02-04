@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerBehavior : MonoBehaviour 
 {
-    public float MoveSpeed = 10f;
-    public float RotateSpeed = 75f;
-    private float _vInput;
+    public float MoveSpeed = 10f; // Movement Speed
+    public float RotateSpeed = 75f; // Rotation Speed
+    private float _vInput; // Vertical Input
 
-    private float _hInput;
-    private Rigidbody _rb;
+    private float _hInput; // Horizontal Input
+    private Rigidbody _rb; // Rigidbody Component
     
-    public float JumpVelocity = 5f;
-    private bool _isJumping;
+    public float JumpVelocity = 5f; // Jump Velocity
+    private bool _isJumping; // Jumping Action
 
-    public float DistanceToGround = 0.1f;
-    public LayerMask GroundLayer;
-    private CapsuleCollider _col;
+    public float DistanceToGround = 0.1f; // Distance to Ground
+    public LayerMask GroundLayer; // Ground Layer
+    private CapsuleCollider _col; // Capsule Collider
 
-    public GameObject Bullet;
-    public float BulletSpeed = 100f;
+    public GameObject Bullet; // Bullet Prefab
+    public float BulletSpeed = 100f; // Bullet Speed
      
-    private bool _isShooting;
+    private bool _isShooting; // Shooting Action
 
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>(); // Get Rigidbody Component
 
-        _col = GetComponent<CapsuleCollider>();
+        _col = GetComponent<CapsuleCollider>(); // Get Capsule Collider Component
     }
 
     void Update()
     {
-        _vInput = Input.GetAxis("Vertical") * MoveSpeed;
-        _hInput = Input.GetAxis("Horizontal") * RotateSpeed;
+        _vInput = Input.GetAxis("Vertical") * MoveSpeed; // Vertical Move Speed
+        _hInput = Input.GetAxis("Horizontal") * RotateSpeed; // Horizontal Rotate Speed
         /*
         this.transform.Translate(Vector3.forward * _vInput * 
         Time.deltaTime);
         this.transform.Rotate(Vector3.up * _hInput * Time.deltaTime);
         */
 
-        _isJumping |= Input.GetKeyDown(KeyCode.J);
+        _isJumping |= Input.GetKeyDown(KeyCode.J); // Jump Action
 
-        _isShooting |=  Input.GetKeyDown(KeyCode.Space);
+        _isShooting |=  Input.GetKeyDown(KeyCode.Space); // Shooting Action
 
     }
 
@@ -51,48 +51,48 @@ public class PlayerBehavior : MonoBehaviour
     {
         Vector3 rotation = Vector3.up * _hInput;
         Quaternion angleRot = Quaternion.Euler(rotation *
-            Time.fixedDeltaTime);
+            Time.fixedDeltaTime); // Rotation
 
         _rb.MovePosition(this.transform.position +
             this.transform.forward * _vInput * Time.fixedDeltaTime);
-        _rb.MoveRotation(_rb.rotation * angleRot);
+        _rb.MoveRotation(_rb.rotation * angleRot); // Movement
 
         if(IsGrounded() && _isJumping)
         {
             _rb.AddForce(Vector3.up * JumpVelocity,
-            ForceMode.Impulse);
+            ForceMode.Impulse); // Jump Force
         }
-        _isJumping = false;
+        _isJumping = false; // Reset Jump Action
 
         if(_isJumping)
         {
-        _rb.AddForce(Vector3.up * JumpVelocity, ForceMode.Impulse);
+        _rb.AddForce(Vector3.up * JumpVelocity, ForceMode.Impulse); // Jump Force
         }
-        _isJumping = false;
+        _isJumping = false; // Reset Jump Action
 
         if (_isShooting)
         {
             Vector3 spawnPos = transform.position + 
-                                   transform.forward * 1f;
+                                   transform.forward * 1f; // Bullet Spawn Position
             GameObject newBullet = Instantiate(Bullet, spawnPos, 
-                                       this.transform.rotation);
+                                       this.transform.rotation); // Create Bullet
             Rigidbody bulletRB = 
-                newBullet.GetComponent<Rigidbody>();
+                newBullet.GetComponent<Rigidbody>(); // Get Bullet Rigidbody
             bulletRB.linearVelocity = this.transform.forward * 
-                                          BulletSpeed;
+                                          BulletSpeed; // Set Bullet Velocity
         }
-        _isShooting = false;
+        _isShooting = false; // Reset Shooting Action
 
     }
 
     private bool IsGrounded()
     {
         Vector3 capsuleBottom = new Vector3(_col.bounds.center.x,
-            _col.bounds.min.y, _col.bounds.center.z);
+            _col.bounds.min.y, _col.bounds.center.z); // Bottom of Capsule
                 
         bool grounded = Physics.CheckCapsule(_col.bounds.center,
             capsuleBottom, DistanceToGround, GroundLayer,
-                QueryTriggerInteraction.Ignore);
+                QueryTriggerInteraction.Ignore); // Check if Grounded
                 
         return grounded;
     }

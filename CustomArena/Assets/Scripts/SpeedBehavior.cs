@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedPickup : MonoBehaviour
+public class SpeedBehavior : MonoBehaviour
 {
     public GameBehavior GameManager;
     void Start()
@@ -18,7 +18,7 @@ public class SpeedPickup : MonoBehaviour
             Debug.Log("Speed Pickup collected!");
 
 
-            GameManager._playerSpeed += 1.0;
+            GameManager._playerSpeed += 1f;
         }
         
     }
