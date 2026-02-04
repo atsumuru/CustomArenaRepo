@@ -5,21 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class GameBehavior : MonoBehaviour
 {
-    private int _itemsCollected = 0;
-    private int _playerHP = 10;
-    public int MaxItems = 3;
-    public TMP_Text HealthText;
-    public TMP_Text ItemText;
-    public TMP_Text ProgressText;
-    public Button WinButton;
+    private int _itemsCollected = 0; // Items Collected
+    public int _playerHP = 10; // Player Health
+    public int MaxItems = 3; // Maximum Items to Win
+
+    public double _playerSpeed = 1.0;// Player Speed
+
+    public TMP_Text HealthText; // Health Display
+    public TMP_Text ItemText; // Items Display
+    public TMP_Text ProgressText; // Progress Display
+
+    public Button WinButton; // Win Button
+
+    public TMP_Text SpeedText; // Speed Pickup
 
     void Start()
     {
-        ItemText.text += _itemsCollected;
-        HealthText.text += _playerHP;
+        ItemText.text += _itemsCollected; // Initialize Items Display, adds starting value
+        HealthText.text += _playerHP; // Initialize Health Display, adds starting value
+        SpeedText.text += _playerSpeed + "x"; // Initialize Speed Display, adds starting value
     }
 
-    public int Items
+    public int Items // Property for Items Collected
     {
         get { return _itemsCollected; }
         set
@@ -27,31 +34,42 @@ public class GameBehavior : MonoBehaviour
             _itemsCollected = value;
             ItemText.text = "Items: " + Items;
 
-            if (_itemsCollected >= MaxItems)
+            if (_itemsCollected >= MaxItems) // Reaches max items
             {
-                ProgressText.text = "You've found all the items!";
-                WinButton.gameObject.SetActive(true);
-                Time.timeScale = 0f;
+                ProgressText.text = "You've found all the items!"; // Win text
+                WinButton.gameObject.SetActive(true); // activate win button
+                Time.timeScale = 0f; // Pause game
             }
             else
             {
-                ProgressText.text = "Item found, only " + (MaxItems - _itemsCollected) + " more to go!";
+                ProgressText.text = "Item found, only " + (MaxItems - _itemsCollected) + " more to go!"; // progress text
             }
         }
     }
 
-    public int HP
+    public int HP // Property for Player Health
     {
-        get { return _playerHP; }
+        get { return _playerHP; } // Get player health
         set
         {
             _playerHP = value;
-            HealthText.text = "Health: " + HP;
-            Debug.LogFormat("Lives: {0}", _playerHP);
+            HealthText.text = "Health: " + HP; // Update health display
+            Debug.LogFormat("Lives: {0}", _playerHP); // Log current health
         }
     }
     
-    public void RestartScene()
+    public double Speed // Property for Player Speed
+    {
+        get { return _playerSpeed; } // Get player speed
+        set
+        {
+            _playerSpeed = value;
+            SpeedText.text = "Speed: " + _playerSpeed + "x"; // Update speed display
+            Debug.LogFormat("Speed: {0}", _playerSpeed); // Log current speed
+        }
+    }
+
+    public void RestartScene() // Restart Scene Method
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
