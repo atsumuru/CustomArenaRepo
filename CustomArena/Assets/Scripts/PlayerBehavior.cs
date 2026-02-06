@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerBehavior : MonoBehaviour 
 {
-    public float MoveSpeed = 10f; // Movement Speed
+    public GameBehavior GameManager;
+
+    public float MoveSpeed; // Movement Speed
     public float RotateSpeed = 75f; // Rotation Speed
     private float _vInput; // Vertical Input
 
@@ -32,6 +34,8 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {
+        MoveSpeed = GameManager._playerSpeed; // Update Move Speed from Game Manager
+
         _vInput = Input.GetAxis("Vertical") * MoveSpeed; // Vertical Move Speed
         _hInput = Input.GetAxis("Horizontal") * RotateSpeed; // Horizontal Rotate Speed
         /*

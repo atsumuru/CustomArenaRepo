@@ -18,7 +18,7 @@ public class SpeedBehavior : MonoBehaviour
             Debug.Log("Speed Pickup collected!");
 
 
-            GameManager._playerSpeed += 1f;
+            GameManager.Speed *= 2f;
         }
         
     }

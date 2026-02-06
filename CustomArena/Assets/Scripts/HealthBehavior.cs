@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBehavior : MonoBehaviour
@@ -16,8 +18,7 @@ public class HealthBehavior : MonoBehaviour
             Destroy(this.gameObject);
             Debug.Log("Health Pickup collected!");
 
-
-            GameManager._playerHP += 1;
+            GameManager.HP += 1;
         }
         
     }

@@ -7,6 +7,11 @@ public class GameBehavior : MonoBehaviour
 {
     private int _itemsCollected = 0; // Items Collected
     public int _playerHP = 10; // Player Health
+    // public void addHP(int newHP)
+    // {
+    //     _playerHP += newHP;
+    // }
+
     public int MaxItems = 3; // Maximum Items to Win
 
     public float _playerSpeed = 5f;// Player Speed
@@ -23,7 +28,7 @@ public class GameBehavior : MonoBehaviour
     {
         ItemText.text += _itemsCollected; // Initialize Items Display, adds starting value
         HealthText.text += _playerHP; // Initialize Health Display, adds starting value
-        SpeedText.text += _playerSpeed + "x"; // Initialize Speed Display, adds starting value
+        SpeedText.text += _playerSpeed; // Initialize Speed Display, adds starting value
     }
 
     public int Items // Property for Items Collected
@@ -65,9 +70,11 @@ public class GameBehavior : MonoBehaviour
         get { return _playerSpeed; } // Get player speed
         set
         {
+            Debug.Log(_playerSpeed);
             _playerSpeed = value;
-            SpeedText.text = "Speed: " + _playerSpeed + "x"; // Update speed display
-            Debug.LogFormat("Speed: {0}", _playerSpeed); // Log current speed
+            Debug.Log(_playerSpeed);
+            SpeedText.text = "Speed: " + _playerSpeed; // Update speed display
+            // Debug.LogFormat("Speed: {0}", _playerSpeed); // Log current speed
         }
     }
 
