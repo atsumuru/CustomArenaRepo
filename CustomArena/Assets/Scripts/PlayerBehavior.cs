@@ -24,12 +24,24 @@ public class PlayerBehavior : MonoBehaviour
      
     private bool _isShooting; // Shooting Action
 
+    private GameBehavior _gameManager; // Reference to Game Manager
+
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>(); // Get Rigidbody Component
 
         _col = GetComponent<CapsuleCollider>(); // Get Capsule Collider Component
+    
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameBehavior>(); // Get Game Manager Component
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Enemy")
+        {
+            _gameManager.HP -= 1;
+        }
     }
 
     void Update()

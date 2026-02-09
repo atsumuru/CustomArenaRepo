@@ -7,11 +7,6 @@ public class GameBehavior : MonoBehaviour
 {
     private int _itemsCollected = 0; // Items Collected
     public int _playerHP = 10; // Player Health
-    // public void addHP(int newHP)
-    // {
-    //     _playerHP += newHP;
-    // }
-
     public int MaxItems = 3; // Maximum Items to Win
 
     public float _playerSpeed = 5f;// Player Speed
@@ -21,14 +16,22 @@ public class GameBehavior : MonoBehaviour
     public TMP_Text ProgressText; // Progress Display
 
     public Button WinButton; // Win Button
+    public Button LossButton;
 
     public TMP_Text SpeedText; // Speed Pickup
+
 
     void Start()
     {
         ItemText.text += _itemsCollected; // Initialize Items Display, adds starting value
         HealthText.text += _playerHP; // Initialize Health Display, adds starting value
         SpeedText.text += _playerSpeed; // Initialize Speed Display, adds starting value
+    }
+
+    public void UpdateScene(string updatedText)
+    {
+        ProgressText.text = updatedText;
+        Time.timeScale = 0f;
     }
 
     public int Items // Property for Items Collected
@@ -38,6 +41,15 @@ public class GameBehavior : MonoBehaviour
         {
             _itemsCollected = value;
             ItemText.text = "Items: " + Items;
+            if (_itemsCollected >= MaxItems)
+            {
+                WinButton.gameObject.SetActive(true);
+                UpdateScene("You've found all the items!");
+            }
+            else
+            {
+                ProgressText.text = "Item found, only " + (MaxItems - _itemsCollected) + " more to go!";
+            }
 
 // edits the progress text and checks for win condition
 
@@ -60,8 +72,19 @@ public class GameBehavior : MonoBehaviour
         set
         {
             _playerHP = value;
-            HealthText.text = "Health: " + HP; // Update health display
-            Debug.LogFormat("Lives: {0}", _playerHP); // Log current health
+                HealthText.text = "Health: " + HP; // Update health display
+                Debug.LogFormat("Lives: {0}", _playerHP); // Log current health
+                
+            if (_playerHP <= 0)
+            {
+                ProgressText.text = "You want another life with that?";
+                LossButton.gameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                ProgressText.text = "Ouch... that's gotta hurt.";
+            }
         }
     }
     
