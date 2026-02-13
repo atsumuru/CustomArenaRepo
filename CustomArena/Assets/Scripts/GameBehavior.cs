@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using TMPro; 
 using UnityEngine.SceneManagement;
 
-public class GameBehavior : MonoBehaviour
+using CustomExtensions;
+
+public class GameBehavior : MonoBehaviour, IManager
 {
     private int _itemsCollected = 0; // Items Collected
     public int _playerHP = 10; // Player Health
@@ -21,11 +23,28 @@ public class GameBehavior : MonoBehaviour
     public TMP_Text SpeedText; // Speed Pickup
 
 
+    private string _state;
+    public string State
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
+
+
     void Start()
     {
         ItemText.text += _itemsCollected; // Initialize Items Display, adds starting value
         HealthText.text += _playerHP; // Initialize Health Display, adds starting value
         SpeedText.text += _playerSpeed; // Initialize Speed Display, adds starting value
+    
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        _state = "Game Manager initialized..";
+
+        _state.FancyDebug();
     }
 
     public void UpdateScene(string updatedText)
@@ -103,7 +122,6 @@ public class GameBehavior : MonoBehaviour
 
     public void RestartScene() // Restart Scene Method
     {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 1f;
+        Utilities.RestartLevel(0);
     }
 }
